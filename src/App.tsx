@@ -1,5 +1,5 @@
 import React from 'react';
-import FileUploadController from './Componants/FileUploadController';
+import FileUploadController from './Components/FileUploadController';
 
 function App() {
   return <FileUploadController />;
