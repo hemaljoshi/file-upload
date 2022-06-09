@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, Box, Snackbar, Stack } from '@mui/material';
+import { Grid, Typography, Button, Box, Snackbar } from '@mui/material';
 import LinearProgress, {
   LinearProgressProps,
 } from '@mui/material/LinearProgress';
@@ -27,6 +27,12 @@ const uploadBoxFileTextStyle = {
   opacity: 0.9,
 };
 const uploadButtonBoxStyle = { textAlign: 'center', my: 2 };
+
+const selectedFilesBoxStyle = {
+  backgroundColor: '#e7e7e7',
+  p: 1,
+  borderRadius: 2,
+};
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }
@@ -126,25 +132,29 @@ export default class FileUpload extends Component<props> {
                   {...getInputProps()}
                 />
                 {selectedFiles.length !== 0 && (
-                  <Stack
-                    direction='column'
-                    justifyContent='center'
-                    alignItems='center'
+                  <Grid
+                    container
                     spacing={1}
+                    direction='row'
+                    alignItems='center'
+                    justifyContent='center'
                   >
                     {selectedFiles.length !== 0 &&
                       Object.keys(selectedFiles).map(
                         (key: any, index: number) => (
-                          <Typography
-                            variant='subtitle1'
-                            sx={uploadBoxFileTextStyle}
-                            key={index}
-                          >
-                            {selectedFiles[key].name}
-                          </Typography>
+                          <Grid item key={index}>
+                            <Box sx={selectedFilesBoxStyle}>
+                              <Typography
+                                variant='subtitle1'
+                                sx={uploadBoxFileTextStyle}
+                              >
+                                {selectedFiles[key].name}
+                              </Typography>
+                            </Box>
+                          </Grid>
                         )
                       )}
-                  </Stack>
+                  </Grid>
                 )}
                 {progressInfos &&
                   progressInfos.map((progressInfo, index) => (
